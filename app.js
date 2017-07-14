@@ -48,20 +48,17 @@ app.delete('/buzzword', (req, res)=>{
           var index = objectArray.indexOf(objectArray[i]);
           objectArray.splice(index,1);
           res.send({"success": true});
-      }else{
+          }else{
          res.send({"success": false});
 
       }
    }
 });
 
-
 app.post("/reset", (req,res)=>{
  objectArray =[];
  res.send({"success": true});
  });
-
-
 
 const server = app.listen(3000, ()=>{
   var host = server.address().address;
@@ -70,9 +67,3 @@ const server = app.listen(3000, ()=>{
   console.log(`Server running on ${host}, at post ${post}`);
 });
 
-// function del(){
-//     if(objectArray[i].hasOwnProperty(objectArray[i].buzzword)){
-//     var index = objectArray.indexOf(objectArray[i]);
-//     objectArray.slice(index,index+1);
-//   }
-// }
