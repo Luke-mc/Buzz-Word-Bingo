@@ -25,9 +25,7 @@ app.post("/buzzword", (req, res)=>{
 });
 
 app.get("/buzzword", (req, res)=>{
-  res.json({"buzzwords": buzzWordsArray});
-  console.log(buzzWordsArray);
-  console.log(objectArray);
+  res.json({"buzzwords": objectArray});
 });
 
 app.put('/buzzword', (req, res)=>{
@@ -36,9 +34,8 @@ app.put('/buzzword', (req, res)=>{
         var currentNum = parseInt(objectArray[i].points);
         var newNum = parseInt(req.body.points);
         var number = currentNum += newNum;
-
-        res.send({"success": true, newScore: number, heard: objectArray[i].heard});
-        //res.end();
+        objectArray[i].heard = true;
+        res.send({"success": true, newScore: number});
       }else{
          res.send({"succes": false});
       }
@@ -48,17 +45,17 @@ app.put('/buzzword', (req, res)=>{
 app.delete('/buzzword', (req, res)=>{
   for(var i = 0; i < objectArray.length; i++){
       if(objectArray[i].buzzword === req.body.buzzword){
-        var currentNum = parseInt(objectArray[i].points);
-        var newNum = parseInt(req.body.points);
-        var number = currentNum += newNum;
-        objectArray[i].heard = true;
-        res.send({"success": true, newScore: number});
-        //res.end();
+          var index = objectArray.indexOf(objectArray[i]);
+          objectArray.splice(index,1);
+          res.send({"success": true});
       }else{
-         res.send({"succes": false});
+         res.send({"success": false});
+
       }
    }
 });
+
+
 
 
 const server = app.listen(3000, ()=>{
@@ -67,3 +64,10 @@ const server = app.listen(3000, ()=>{
 
   console.log(`Server running on ${host}, at post ${post}`);
 });
+
+// function del(){
+//     if(objectArray[i].hasOwnProperty(objectArray[i].buzzword)){
+//     var index = objectArray.indexOf(objectArray[i]);
+//     objectArray.slice(index,index+1);
+//   }
+// }
