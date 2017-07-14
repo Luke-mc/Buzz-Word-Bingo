@@ -31,19 +31,23 @@ app.post("/buzzword", (req, res)=>{
 
 });
 
-app.get("/buzzwords", (req, res)=>{
+app.get("/buzzword", (req, res)=>{
   res.json({"buzzwords": buzzWordsArray});
+  console.log(buzzWordsArray);
+  console.log(objectArray);
 });
 
 
 app.put('/buzzword', (req, res)=>{
 for(var i = 0; i < objectArray.length; i++){
+
   if(objectArray[i].buzzword === req.body.buzzword){
-   res.send({"failed": false});
+    console.log(objectArray[i].buzzword);
+   res.send({"success": true});
   }else{
-    res.send({"failed": true});
+    res.send({"succes": false});
   }
-  }
+ }
 });
 
 
