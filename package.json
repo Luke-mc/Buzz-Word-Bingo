@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Luke-mc/Buzz-Word-Bingo/issues"
   },
-  "homepage": "https://github.com/Luke-mc/Buzz-Word-Bingo#readme"
+  "homepage": "https://github.com/Luke-mc/Buzz-Word-Bingo#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3"
+  }
 }
