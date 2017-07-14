@@ -6,21 +6,20 @@ app.use (bodyParser.json());
 const buzzWordsArray = [];
 var objectArray = [];
 
-var html = app.use(express.static('public/'));
-
-
-app.get("/", (req, res)=>{
-  res.send(html);
-});
+app.use(express.static('public/'));
 
 app.post("/buzzword", (req, res)=>{
-  if(buzzWordsArray.indexOf(req.body.buzzword) !== -1){
-    res.send({"success": false});
-  }else{
-    req.body.heard = false;
-    objectArray.push(req.body);
-    buzzWordsArray.push(req.body.buzzword);
-    res.send({"success": true});
+  if(typeof req.body.buzzword === "string" && typeof req.body.points === "number"){
+    if(buzzWordsArray.indexOf(req.body.buzzword) !== -1){
+      res.send({"success": false});
+    }else{
+      req.body.heard = false;
+      objectArray.push(req.body);
+      buzzWordsArray.push(req.body.buzzword);
+      res.send({"success": true});
+     }
+   }else{
+    res.send("Invalid entry");
    }
 });
 
