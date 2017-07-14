@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use (bodyParser.json());
 const buzzWordsArray = [];
-const objectArray = [];
+var objectArray = [];
 var html = app.use(express.static('public/'));
 
 
@@ -55,6 +55,11 @@ app.delete('/buzzword', (req, res)=>{
    }
 });
 
+
+app.post("/reset", (req,res)=>{
+ objectArray =[];
+ res.send({"success": true});
+ });
 
 
 
